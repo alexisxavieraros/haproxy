@@ -1,0 +1,28 @@
+<!-- dashboard.html -->
+<html>
+<head>
+    <title>HAProxy Dashboard</title>
+</head>
+<body>
+    <h1>HAProxy Dashboard</h1>
+
+    <div>
+        <h2>Requests</h2>
+        <!-- Mostrar gráficos o estadísticas de solicitudes aquí -->
+    </div>
+
+    <div>
+        <h2>Rendimiento</h2>
+        <!-- Mostrar gráficos o estadísticas de rendimiento aquí -->
+    </div>
+
+    <div>
+        <h2>Lista de URL</h2>
+        <ul>
+            {% for url in url_list %}
+                <li>{{ url }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
