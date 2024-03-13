@@ -8,18 +8,26 @@
 
     <div>
         <h2>Requests</h2>
-        <!-- Mostrar gráficos o estadísticas de solicitudes aquí -->
+        <ul>
+            {% for request in data['requests_data'] %}
+                <li>{{ request }}</li>
+            {% endfor %}
+        </ul>
     </div>
 
     <div>
         <h2>Rendimiento</h2>
-        <!-- Mostrar gráficos o estadísticas de rendimiento aquí -->
+        <ul>
+            {% for performance in data['performance_data'] %}
+                <li>{{ performance }}</li>
+            {% endfor %}
+        </ul>
     </div>
 
     <div>
         <h2>Lista de URL</h2>
         <ul>
-            {% for url in url_list %}
+            {% for url in data['url_list'] %}
                 <li>{{ url }}</li>
             {% endfor %}
         </ul>
