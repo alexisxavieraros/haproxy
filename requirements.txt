@@ -1,2 +1,2 @@
 Flask==2.0.1
-# Otras dependencias pueden ir aquí
+Werkzeug==2.0.1
