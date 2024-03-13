@@ -1,22 +1,26 @@
 # app.py
 
 from flask import Flask, render_template
+import os
 
 app = Flask(__name__)
 
-# ... (tu código para procesar haproxy.conf y recopilar datos)
+def read_haproxy_conf():
+    haproxy_conf_path = '/app/haproxy.conf'  # Ruta al archivo haproxy.conf en el contenedor
+    if os.path.exists(haproxy_conf_path):
+        with open(haproxy_conf_path, 'r') as file:
+            content = file.read()
+            # Procesa el contenido del archivo haproxy.conf según tus necesidades
+            # Aquí puedes extraer información, generar estadísticas, etc.
+            return content
+    else:
+        return "El archivo haproxy.conf no se encuentra."
 
-# Ruta para el dashboard
 @app.route('/')
 def index():
-    # Devuelve el dashboard con las propiedades requeridas
-    return render_template('dashboard.html', requests_data=requests_data, performance_data=performance_data, url_list=url_list)
-
-# Si prefieres que el archivo se llame index.html, puedes cambiar el nombre del archivo a index.html y esta ruta a /index
-@app.route('/dashboard')
-def dashboard():
-    # Similar al índice, puedes mantener esta ruta como /dashboard
-    return render_template('dashboard.html', requests_data=requests_data, performance_data=performance_data, url_list=url_list)
+    haproxy_content = read_haproxy_conf()
+    # Devuelve el dashboard con las propiedades requeridas y la información de haproxy.conf
+    return render_template('dashboard.html', haproxy_content=haproxy_content)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
